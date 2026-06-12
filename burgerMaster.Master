@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width" />
     
     <!-- External Styles and Fonts -->
-    <link href="Styles/masterStyle.css" rel="stylesheet" type="text/css" />
+    <link href="Styles/masterStyle.css?v=3" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500&family=Inter:wght@400;600&family=Chewy&display=swap" rel="stylesheet" />
 
     <!-- Checkout-Specific Styles -->
