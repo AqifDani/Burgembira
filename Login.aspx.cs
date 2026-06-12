@@ -22,7 +22,7 @@ namespace Burgembira
                 bool isAdmin = IsAdminUser(username, password);
 
                 Session["Username"] = username;
-                Session["UserID"] = userId;
+                Session["UserId"] = userId;
                 Session["isAdmin"] = isAdmin;
 
                 HttpCookie userCookie = new HttpCookie("Username", username)
