@@ -1,0 +1,39 @@
+﻿.form-container {
+    max-width: 500px;
+    margin: 30px auto;
+    background-color: #fff7e6;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+    .form-container h2 {
+        text-align: center;
+        color: #d35400;
+    }
+
+.form-table {
+    width: 100%;
+    border-spacing: 10px;
+}
+
+.input-style {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.validation-error {
+    color: red;
+}
+
+.register-button {
+    background-color: #e67e22;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 15px;
+}

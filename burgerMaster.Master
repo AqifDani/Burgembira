@@ -1,0 +1,148 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="ByNao.Site1" %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <title>Burgembira</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    
+    <!-- External Styles and Fonts -->
+    <link href="Styles/masterStyle.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500&family=Inter:wght@400;600&family=Chewy&display=swap" rel="stylesheet" />
+
+    <!-- Checkout-Specific Styles -->
+    <style>
+        .checkout-wrapper {
+            max-width: 800px;
+            margin: 40px auto;
+            background-color: #fff5f5;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .checkout-wrapper h2 {
+            text-align: center;
+            color: #d62828;
+            margin-bottom: 20px;
+        }
+
+        .checkout-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #fff;
+            border: 2px solid #f2c2c2;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .checkout-item p {
+            margin: 6px 0;
+            color: #333;
+        }
+
+        .checkout-total {
+            text-align: right;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+            color: #444;
+        }
+
+        .receipt-panel {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #eaf5ea;
+            border-left: 6px solid #4CAF50;
+            border-radius: 10px;
+            font-family: 'Poppins', sans-serif;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .receipt-panel table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .receipt-panel th,
+        .receipt-panel td {
+            border-bottom: 1px solid #ddd;
+            padding: 8px 12px;
+        }
+
+        .receipt-panel th {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+
+    <asp:ContentPlaceHolder ID="head" runat="server" />
+</head>
+
+<body>
+    <form id="form1" runat="server">
+        <div class="page-container">
+
+            <!-- NAVIGATION BAR -->
+            <div class="navbar">
+
+                <!-- LEFT SIDE: Logo + Nav Links -->
+                <div class="navbar-left">
+                    <div class="logo">
+                        <a href="Homepage.aspx">Burgembira</a>
+                        <div class="slogan">Bringing You Happy Bites Daily!</div>
+                    </div>
+
+                    <ul class="nav-links">
+                        <li><a href="ProductListing.aspx">📋 View Menu</a></li>
+
+                        <!-- Guest Links -->
+                        <asp:PlaceHolder ID="phGuest" runat="server">
+                            <li><a href="Login.aspx">🔐 Login</a></li>
+                            <li><a href="Signup.aspx">📝 Register</a></li>
+                        </asp:PlaceHolder>
+
+                        <!-- Customer Links -->
+                        <asp:PlaceHolder ID="phCustomer" runat="server">
+                            <li><a href="Cart.aspx">🛒 My Cart</a></li>
+                            <li><a href="OrderHistory.aspx">📦 Order History</a></li>
+                        </asp:PlaceHolder>
+
+                        <!-- Admin Links -->
+                        <asp:PlaceHolder ID="phAdmin" runat="server">
+                            <li><a href="ProductListingAdmin.aspx">🧑‍💼 Admin Panel</a></li>
+                            <li><a href="DeliveryStatus.aspx">📦 Delivery Status</a></li>
+                        </asp:PlaceHolder>
+                    </ul>
+                </div>
+
+                <!-- RIGHT SIDE: Welcome + Logout -->
+                <div class="navbar-right">
+                    <asp:PlaceHolder ID="phCommonLoggedIn" runat="server">
+                        <asp:Label ID="lblWelcome" runat="server" CssClass="welcome-label" />
+                        <asp:LinkButton ID="btnLogout" runat="server" OnClick="btnLogout_Click" CssClass="logout-btn">
+                            🚪 Logout
+                        </asp:LinkButton>
+                    </asp:PlaceHolder>
+                </div>
+
+            </div>
+
+            <!-- MAIN CONTENT -->
+            <div class="main-content">
+                <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+            </div>
+
+            <!-- FOOTER -->
+            <div class="footer">
+                &copy; 2025 <strong>Burgembira</strong> 🍔 <br />
+                <span>Crafted with Joy, Served with Style!</span>
+            </div>
+
+        </div>
+    </form>
+</body>
+</html>
