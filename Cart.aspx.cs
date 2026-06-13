@@ -39,6 +39,7 @@ namespace Burgembira
                 cmd.Parameters.AddWithValue("@UserId", userId);
 
                 conn.Open();
+
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
@@ -63,61 +64,132 @@ namespace Burgembira
 
             if (e.CommandName == "Remove")
             {
-                string connStr = ConfigurationManager.ConnectionStrings["BurgembiraDB"].ConnectionString;
-
-                using (SqlConnection conn = new SqlConnection(connStr))
-                {
-                    conn.Open();
-                    string selectQuery = "SELECT Quantity FROM Cart WHERE UserId = @UserId AND ItemName = @ItemName";
-                    using (SqlCommand selectCmd = new SqlCommand(selectQuery, conn))
-                    {
-                        selectCmd.Parameters.AddWithValue("@UserId", userId);
-                        selectCmd.Parameters.AddWithValue("@ItemName", itemName);
-                        object result = selectCmd.ExecuteScalar();
-
-                        if (result != null)
-                        {
-                            int quantity = Convert.ToInt32(result);
-                            if (quantity > 1)
-                            {
-                                string updateQuery = "UPDATE Cart SET Quantity = Quantity - 1 WHERE UserId = @UserId AND ItemName = @ItemName";
-                                using (SqlCommand updateCmd = new SqlCommand(updateQuery, conn))
-                                {
-                                    updateCmd.Parameters.AddWithValue("@UserId", userId);
-                                    updateCmd.Parameters.AddWithValue("@ItemName", itemName);
-                                    updateCmd.ExecuteNonQuery();
-                                }
-                            }
-                            else
-                            {
-                                string deleteQuery = "DELETE FROM Cart WHERE UserId = @UserId AND ItemName = @ItemName";
-                                using (SqlCommand deleteCmd = new SqlCommand(deleteQuery, conn))
-                                {
-                                    deleteCmd.Parameters.AddWithValue("@UserId", userId);
-                                    deleteCmd.Parameters.AddWithValue("@ItemName", itemName);
-                                    deleteCmd.ExecuteNonQuery();
-                                }
-                            }
-                        }
-                    }
-                }
-
+                RemoveCartItem(itemName);
                 RefreshCart();
             }
-
             else if (e.CommandName == "Update")
             {
                 TextBox txtQuantity = (TextBox)e.Item.FindControl("txtQuantity");
                 TextBox txtNotes = (TextBox)e.Item.FindControl("txtNotes");
 
                 int newQty = int.TryParse(txtQuantity.Text, out int q) ? q : 1;
-                newQty = Math.Max(1, Math.Min(newQty, 10)); // Clamp 1–10
+                newQty = Math.Max(1, Math.Min(newQty, 10));
 
                 string notes = txtNotes.Text.Trim();
-                if (notes.Length > 255) notes = notes.Substring(0, 255);
+
+                if (notes.Length > 255)
+                {
+                    notes = notes.Substring(0, 255);
+                }
+
+                int availableStock = GetAvailableStock(itemName);
+
+                if (newQty > availableStock)
+                {
+                    ClientScript.RegisterStartupScript(
+                        this.GetType(),
+                        "StockLimit",
+                        $"alert('You cannot set quantity more than available stock. Available stock: {availableStock}');",
+                        true
+                    );
+
+                    RefreshCart();
+                    return;
+                }
 
                 UpdateCartItem(itemName, newQty, notes);
                 RefreshCart();
+            }
+        }
+
+        private void RemoveCartItem(string itemName)
+        {
+            string connStr = ConfigurationManager.ConnectionStrings["BurgembiraDB"].ConnectionString;
+
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+
+                string selectQuery = @"
+                    SELECT Quantity 
+                    FROM Cart 
+                    WHERE UserId = @UserId 
+                    AND ItemName = @ItemName";
+
+                using (SqlCommand selectCmd = new SqlCommand(selectQuery, conn))
+                {
+                    selectCmd.Parameters.AddWithValue("@UserId", userId);
+                    selectCmd.Parameters.AddWithValue("@ItemName", itemName);
+
+                    object result = selectCmd.ExecuteScalar();
+
+                    if (result != null)
+                    {
+                        int quantity = Convert.ToInt32(result);
+
+                        if (quantity > 1)
+                        {
+                            string updateQuery = @"
+                                UPDATE Cart 
+                                SET Quantity = Quantity - 1 
+                                WHERE UserId = @UserId 
+                                AND ItemName = @ItemName";
+
+                            using (SqlCommand updateCmd = new SqlCommand(updateQuery, conn))
+                            {
+                                updateCmd.Parameters.AddWithValue("@UserId", userId);
+                                updateCmd.Parameters.AddWithValue("@ItemName", itemName);
+                                updateCmd.ExecuteNonQuery();
+                            }
+                        }
+                        else
+                        {
+                            string deleteQuery = @"
+                                DELETE FROM Cart 
+                                WHERE UserId = @UserId 
+                                AND ItemName = @ItemName";
+
+                            using (SqlCommand deleteCmd = new SqlCommand(deleteQuery, conn))
+                            {
+                                deleteCmd.Parameters.AddWithValue("@UserId", userId);
+                                deleteCmd.Parameters.AddWithValue("@ItemName", itemName);
+                                deleteCmd.ExecuteNonQuery();
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private int GetAvailableStock(string itemName)
+        {
+            string connStr = ConfigurationManager.ConnectionStrings["BurgembiraDB"].ConnectionString;
+
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                string query = @"
+                    SELECT TOP 1 m.StockQuantity
+                    FROM MenuItems m
+                    INNER JOIN Cart c ON m.ItemId = c.ItemId
+                    WHERE c.UserId = @UserId
+                    AND c.ItemName = @ItemName";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@UserId", userId);
+                    cmd.Parameters.AddWithValue("@ItemName", itemName);
+
+                    conn.Open();
+
+                    object result = cmd.ExecuteScalar();
+
+                    if (result != null)
+                    {
+                        return Convert.ToInt32(result);
+                    }
+
+                    return 0;
+                }
             }
         }
 
@@ -134,7 +206,12 @@ namespace Burgembira
 
             using (SqlConnection conn = new SqlConnection(connStr))
             {
-                string updateQuery = "UPDATE Cart SET Quantity = @Quantity, Customization = @Customization WHERE UserId = @UserId AND ItemName = @ItemName";
+                string updateQuery = @"
+                    UPDATE Cart 
+                    SET Quantity = @Quantity, 
+                        Customization = @Customization 
+                    WHERE UserId = @UserId 
+                    AND ItemName = @ItemName";
 
                 using (SqlCommand cmd = new SqlCommand(updateQuery, conn))
                 {
@@ -152,6 +229,35 @@ namespace Burgembira
         protected void BtnCheckout_Click(object sender, EventArgs e)
         {
             Response.Redirect("Checkout.aspx");
+        }
+
+        protected string GetImageUrl(object imageValue)
+        {
+            string image = imageValue == null ? "" : imageValue.ToString().Trim();
+
+            if (string.IsNullOrWhiteSpace(image))
+            {
+                return ResolveUrl("~/Images/no-image.png");
+            }
+
+            if (image.StartsWith("http://", StringComparison.OrdinalIgnoreCase) ||
+                image.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
+            {
+                return image;
+            }
+
+            if (image.StartsWith("~/", StringComparison.OrdinalIgnoreCase))
+            {
+                return ResolveUrl(image);
+            }
+
+            if (image.StartsWith("Images/", StringComparison.OrdinalIgnoreCase) ||
+                image.StartsWith("images/", StringComparison.OrdinalIgnoreCase))
+            {
+                return ResolveUrl("~/" + image);
+            }
+
+            return ResolveUrl("~/Images/" + image);
         }
     }
 }

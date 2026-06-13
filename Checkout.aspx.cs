@@ -201,6 +201,8 @@ namespace Burgembira
                 receipt.Append("</div>");
 
                 litReceipt.Text = receipt.ToString();
+
+                pnlCheckoutForm.Visible = false;
                 pnlReceipt.Visible = true;
 
                 Repeater1.DataSource = null;

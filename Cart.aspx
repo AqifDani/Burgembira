@@ -2,6 +2,8 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
+    <h2 class="page-title">🛒 Your Cart</h2>
+
     <asp:Literal ID="litEmptyCart" runat="server" Visible="false"
         Text="<div class='cart-empty'>🛒 Your cart is empty.</div>" />
 
@@ -15,48 +17,95 @@
         </SelectParameters>
     </asp:SqlDataSource>
 
-    <div class="cart-wrapper">
-        <asp:DataList ID="DataList1" runat="server" DataSourceID="SqlDataSource1" OnItemCommand="DataList1_ItemCommand"
-            RepeatDirection="Horizontal" RepeatColumns="3">
-            <ItemTemplate>
-                <div class="cart-item">
-                    <label><strong>Item:</strong> <%# Eval("ItemName") %></label>
-                    <asp:Image ID="ItemImage" runat="server" ImageUrl='<%# Eval("ItemImage") %>' AlternateText="Item Image" />
+    <div class="cart-page-layout">
 
-                    <label><strong>Quantity:</strong></label>
-                    <asp:TextBox ID="txtQuantity" runat="server" Text='<%# Eval("Quantity") %>' Width="40" MaxLength="2" />
+        <div class="cart-list-section">
+            <asp:DataList ID="DataList1" runat="server"
+                DataSourceID="SqlDataSource1"
+                OnItemCommand="DataList1_ItemCommand"
+                RepeatDirection="Horizontal"
+                RepeatColumns="2"
+                CellPadding="0"
+                CellSpacing="0"
+                CssClass="cart-datalist">
 
-                    <label><strong>Notes:</strong></label>
-                    <asp:TextBox ID="txtNotes" runat="server" Text='<%# Eval("Customization") %>' Width="150"
-                        MaxLength="255" Placeholder="e.g., No mayo, extra cheese" />
+                <ItemTemplate>
+                    <div class="cart-item">
 
-                    <label><strong>Price (RM):</strong> <%# Eval("ItemPrice", "{0:N2}") %></label>
-                    <label><strong>Total (RM):</strong> <%# Eval("TotalPrice", "{0:N2}") %></label>
+                        <div class="cart-item-header">
+                            <h3><%# Eval("ItemName") %></h3>
+                        </div>
 
-                    <asp:Button ID="btnUpdate" runat="server"
-                        CommandArgument='<%# Eval("ItemName") %>'
-                        CommandName="Update"
-                        Text="Update" CssClass="update-btn" />
+                        <asp:Image ID="ItemImage" runat="server"
+                            ImageUrl='<%# GetImageUrl(Eval("ItemImage")) %>'
+                            AlternateText="Item Image"
+                            CssClass="cart-product-image" />
 
-                    <asp:Button ID="btnRemove" runat="server"
-                        CommandArgument='<%# Eval("ItemName") %>'
-                        CommandName="Remove"
-                        Text="Remove from Cart"
-                        CssClass="remove-btn" />
+                        <div class="cart-price-row">
+                            <span>Price</span>
+                            <strong>RM <%# Eval("ItemPrice", "{0:N2}") %></strong>
+                        </div>
+
+                        <div class="cart-price-row">
+                            <span>Total</span>
+                            <strong>RM <%# Eval("TotalPrice", "{0:N2}") %></strong>
+                        </div>
+
+                        <div class="cart-form-group">
+                            <label>Quantity</label>
+                            <asp:TextBox ID="txtQuantity" runat="server"
+                                Text='<%# Eval("Quantity") %>'
+                                MaxLength="2"
+                                CssClass="cart-qty-input" />
+                        </div>
+
+                        <div class="cart-form-group">
+                            <label>Notes / Customization</label>
+                            <asp:TextBox ID="txtNotes" runat="server"
+                                Text='<%# Eval("Customization") %>'
+                                MaxLength="255"
+                                Placeholder="e.g., No mayo, extra cheese"
+                                CssClass="cart-notes-input" />
+                        </div>
+
+                        <div class="cart-action-row">
+                            <asp:Button ID="btnUpdate" runat="server"
+                                CommandArgument='<%# Eval("ItemName") %>'
+                                CommandName="Update"
+                                Text="Update Cart"
+                                CssClass="grid-button" />
+
+                            <asp:Button ID="btnRemove" runat="server"
+                                CommandArgument='<%# Eval("ItemName") %>'
+                                CommandName="Remove"
+                                Text="Remove"
+                                CssClass="remove-btn"
+                                OnClientClick="return confirm('Remove this item from cart?');" />
+                        </div>
+
+                    </div>
+                </ItemTemplate>
+            </asp:DataList>
+        </div>
+
+        <div class="cart-summary-section">
+            <asp:Panel ID="PanelTotal" runat="server" Visible="false" CssClass="cart-total-panel">
+                <h3>Cart Summary</h3>
+
+                <div class="summary-line">
+                    <span>Total Amount</span>
+                    <strong>RM <asp:Label ID="lblTotal" runat="server" Text="0.00" /></strong>
                 </div>
-            </ItemTemplate>
-        </asp:DataList>
+            </asp:Panel>
+
+            <asp:Panel ID="PanelCheckout" runat="server" Visible="false" CssClass="checkout-panel">
+                <asp:Button ID="BtnCheckout" runat="server"
+                    Text="Proceed to Checkout"
+                    CssClass="checkout-btn"
+                    OnClick="BtnCheckout_Click" />
+            </asp:Panel>
+        </div>
+
     </div>
 
-    <asp:Panel ID="PanelTotal" runat="server" Visible="false" CssClass="cart-total-panel">
-        <strong>Total Amount (RM):</strong>
-        <asp:Label ID="lblTotal" runat="server" Text="0.00" />
-    </asp:Panel>
-
-    <asp:Panel ID="PanelCheckout" runat="server" Visible="false" CssClass="checkout-panel">
-        <asp:Button ID="BtnCheckout" runat="server" Text="Proceed to Checkout"
-            CssClass="checkout-btn" OnClick="BtnCheckout_Click" />
-    </asp:Panel>
-
 </asp:Content>
-
