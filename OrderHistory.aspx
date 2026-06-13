@@ -1,52 +1,6 @@
 ﻿<%@ Page Title="Order History" Language="C#" MasterPageFile="~/burgerMaster.Master" AutoEventWireup="true" CodeBehind="OrderHistory.aspx.cs" Inherits="Burgembira.OrderHistory" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <style>
-        .order-wrapper {
-            max-width: 900px;
-            margin: 30px auto;
-            background: #fff;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            font-family: 'Segoe UI', sans-serif;
-        }
-
-        .order-title {
-            text-align: center;
-            color: #d32f2f;
-            font-size: 28px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-
-        .status-message {
-            text-align: center;
-            margin-bottom: 15px;
-            font-size: 16px;
-            color: #777;
-        }
-
-        .gridview-style {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 14px;
-        }
-
-        .gridview-style th, .gridview-style td {
-            padding: 12px;
-            text-align: left;
-        }
-
-        .gridview-style th {
-            background-color: #d32f2f;
-            color: white;
-        }
-
-        .gridview-style tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-    </style>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -56,11 +10,28 @@
         <asp:Label ID="MessageLabel" runat="server" CssClass="status-message" />
 
         <asp:GridView ID="GridViewOrderHistory" runat="server" AutoGenerateColumns="False"
-            CssClass="gridview-style" GridLines="None">
+            CssClass="gridview-style" GridLines="None"
+            OnRowCommand="GridViewOrderHistory_RowCommand">
+
             <Columns>
-                <asp:BoundField DataField="DeliveryID" HeaderText="Order ID" />
-                <asp:BoundField DataField="DeliveryDate" HeaderText="Order Date" DataFormatString="{0:dd MMM yyyy hh:mm tt}" />
-                <asp:BoundField DataField="Status" HeaderText="Status" />
+                <asp:BoundField DataField="OrderId" HeaderText="Order ID" />
+                <asp:BoundField DataField="OrderDate" HeaderText="Order Date" DataFormatString="{0:dd MMM yyyy hh:mm tt}" />
+                <asp:BoundField DataField="Items" HeaderText="Items Ordered" />
+                <asp:BoundField DataField="PaymentMethod" HeaderText="Payment Method" />
+                <asp:BoundField DataField="DeliveryStatus" HeaderText="Delivery Status" />
+                <asp:BoundField DataField="TotalAmount" HeaderText="Total (RM)" DataFormatString="{0:N2}" />
+
+                <asp:TemplateField HeaderText="Action">
+                    <ItemTemplate>
+                        <asp:Button ID="btnCancelOrder" runat="server"
+                            Text="Cancel"
+                            CssClass="grid-button"
+                            CommandName="CancelOrder"
+                            CommandArgument='<%# Eval("OrderId") %>'
+                            OnClientClick="return confirm('Are you sure you want to cancel this order?');"
+                            Enabled='<%# Eval("DeliveryStatus").ToString() != "Delivered" && Eval("DeliveryStatus").ToString() != "Cancelled" %>' />
+                    </ItemTemplate>
+                </asp:TemplateField>
             </Columns>
         </asp:GridView>
     </div>
