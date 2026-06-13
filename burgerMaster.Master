@@ -97,25 +97,25 @@
                     </div>
 
                     <ul class="nav-links">
-                        <li><a href="ProductListing.aspx">📋 View Menu</a></li>
+                        <li><a href="ProductListing.aspx">View Menu</a></li>
 
                         <!-- Guest Links -->
                         <asp:PlaceHolder ID="phGuest" runat="server">
-                            <li><a href="Login.aspx">🔐 Login</a></li>
-                            <li><a href="Signup.aspx">📝 Register</a></li>
+                            <li><a href="Login.aspx">Login</a></li>
+                            <li><a href="Signup.aspx">Register</a></li>
                         </asp:PlaceHolder>
 
                         <!-- Customer Links -->
                         <asp:PlaceHolder ID="phCustomer" runat="server">
-                            <li><a href="Cart.aspx">🛒 My Cart</a></li>
-                            <li><a href="OrderHistory.aspx">📦 Order History</a></li>
+                            <li><a href="Cart.aspx">My Cart</a></li>
+                            <li><a href="OrderHistory.aspx">Order History</a></li>
                             <li><a href="Review.aspx">Reviews</a></li>
                         </asp:PlaceHolder>
 
                         <!-- Admin Links -->
                         <asp:PlaceHolder ID="phAdmin" runat="server">
-                            <li><a href="ProductListingAdmin.aspx">🧑‍💼 Admin Panel</a></li>
-                            <li><a href="DeliveryStatus.aspx">📦 Delivery Status</a></li>
+                            <li><a href="ProductListingAdmin.aspx">Admin Panel</a></li>
+                            <li><a href="DeliveryStatus.aspx">Delivery Status</a></li>
                             <li><a href="SalesReport.aspx">Sales Report</a></li>
                         </asp:PlaceHolder>
                     </ul>

@@ -87,6 +87,33 @@ namespace Burgembira
         protected global::System.Web.UI.WebControls.RegularExpressionValidator RegexEmail;
 
         /// <summary>
+        /// TextBoxPhone control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TextBoxPhone;
+
+        /// <summary>
+        /// PhoneValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator PhoneValidator;
+
+        /// <summary>
+        /// RegexPhone control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegexPhone;
+
+        /// <summary>
         /// TextBoxPassword control.
         /// </summary>
         /// <remarks>
@@ -121,33 +148,6 @@ namespace Burgembira
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox CheckBoxShowPassword;
-
-        /// <summary>
-        /// TextBoxPhone control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxPhone;
-
-        /// <summary>
-        /// PhoneValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator PhoneValidator;
-
-        /// <summary>
-        /// RegexPhone control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegexPhone;
 
         /// <summary>
         /// TextBoxAddress control.
