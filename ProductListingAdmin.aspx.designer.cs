@@ -15,6 +15,15 @@ namespace Burgembira
     {
 
         /// <summary>
+        /// lblNote control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNote;
+
+        /// <summary>
         /// SqlDataSource1 control.
         /// </summary>
         /// <remarks>
@@ -22,6 +31,15 @@ namespace Burgembira
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
+
+        /// <summary>
+        /// DetailsViewAddItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DetailsView DetailsViewAddItem;
 
         /// <summary>
         /// GridView1 control.
