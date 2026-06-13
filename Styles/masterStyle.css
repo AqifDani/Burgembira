@@ -1365,3 +1365,238 @@ strong {
         width: 100%;
     }
 }
+
+/* =========================
+   ADMIN / REPORT / REVIEW FINAL REFINEMENT
+   ========================= */
+
+.delivery-wrapper,
+.admin-page-wrapper {
+    width: min(1150px, calc(100% - 32px));
+    margin: 45px auto 70px;
+    background: #ffffff;
+    border: 1px solid #f0d7c5;
+    border-radius: 28px;
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.08);
+    padding: 34px;
+}
+
+    .delivery-title,
+    .delivery-wrapper h2,
+    .delivery-wrapper h3 {
+        text-align: center;
+        color: #d62828;
+        font-weight: 900;
+    }
+
+.delivery-title {
+    font-size: 38px;
+    margin-bottom: 28px;
+}
+
+.status-message {
+    display: block;
+    text-align: center;
+    color: #d62828;
+    font-weight: 800;
+    margin: 14px 0 22px;
+}
+
+/* Admin add-item form */
+.admin-grid {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #ffffff;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
+    border: 1px solid #f0d7c5;
+}
+
+    .admin-grid th {
+        background: linear-gradient(90deg, #d62828, #9d1c1c);
+        color: #ffffff;
+        padding: 14px 16px;
+        text-align: center;
+        font-weight: 900;
+    }
+
+    .admin-grid td {
+        padding: 14px 16px;
+        border-bottom: 1px solid #eeeeee;
+        vertical-align: middle;
+        text-align: center;
+    }
+
+    .admin-grid tr:nth-child(even) td {
+        background: #fff8ed;
+    }
+
+    .admin-grid input[type="text"],
+    .admin-grid input[type="number"],
+    .admin-grid select {
+        width: 100%;
+        min-height: 42px;
+        border: 1px solid #f0d7c5;
+        border-radius: 12px;
+        padding: 10px 12px;
+        background: #fffaf4;
+    }
+
+/* GridView table improvement */
+.gridview-style {
+    width: 100%;
+    margin-top: 24px;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #ffffff;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
+    border: 1px solid #f0d7c5;
+}
+
+    .gridview-style th {
+        background: linear-gradient(90deg, #d62828, #9d1c1c);
+        color: #ffffff;
+        padding: 14px 16px;
+        text-align: center;
+        font-weight: 900;
+        white-space: nowrap;
+    }
+
+    .gridview-style td {
+        padding: 14px 16px;
+        border-bottom: 1px solid #eeeeee;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .gridview-style tr:nth-child(even) td {
+        background: #fff8ed;
+    }
+
+    .gridview-style tr:hover td {
+        background: #fff1dc;
+    }
+
+/* Sales report filter area */
+.report-filter-box {
+    background: #fff8ed;
+    border: 1px solid #f0d7c5;
+    border-radius: 22px;
+    padding: 22px;
+    margin-bottom: 26px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+    .report-filter-box select {
+        min-width: 170px;
+        min-height: 42px;
+    }
+
+.report-summary-box {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(220px, 1fr));
+    gap: 18px;
+    margin: 20px 0 28px;
+}
+
+.report-summary-card {
+    background: #fff8ed;
+    border: 1px solid #f0d7c5;
+    border-radius: 20px;
+    padding: 22px;
+    text-align: center;
+}
+
+    .report-summary-card span {
+        display: block;
+        color: #6b6b6b;
+        font-weight: 700;
+        margin-bottom: 8px;
+    }
+
+    .report-summary-card strong {
+        color: #d62828;
+        font-size: 24px;
+    }
+
+/* Review form refinement */
+.review-form-box {
+    max-width: 680px;
+    margin: 0 auto 34px;
+    padding: 28px;
+    background: #fff8ed;
+    border: 1px solid #f0d7c5;
+    border-radius: 24px;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
+}
+
+    .review-form-box h3 {
+        margin-top: 0;
+        margin-bottom: 22px;
+        color: #d62828;
+    }
+
+    .review-form-box p {
+        margin-bottom: 18px;
+    }
+
+    .review-form-box select,
+    .review-form-box textarea {
+        width: 100%;
+    }
+
+/* Button polish */
+.grid-button,
+.remove-btn,
+.checkout-btn {
+    min-height: 40px;
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-weight: 900;
+    border: none;
+}
+
+.grid-button {
+    background: #27ae60;
+    color: #ffffff;
+}
+
+    .grid-button:hover {
+        background: #1f8a4d;
+    }
+
+.remove-btn {
+    background: #d62828;
+    color: #ffffff;
+}
+
+    .remove-btn:hover {
+        background: #9d1c1c;
+    }
+
+/* Mobile table handling */
+@media (max-width: 900px) {
+    .delivery-wrapper,
+    .admin-page-wrapper {
+        padding: 24px;
+    }
+
+    .gridview-style,
+    .admin-grid {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .report-summary-box {
+        grid-template-columns: 1fr;
+    }
+}
