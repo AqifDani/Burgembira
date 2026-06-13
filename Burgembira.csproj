@@ -96,6 +96,7 @@
     <Content Include="OrderHistory.aspx" />
     <Content Include="ProductListing.aspx" />
     <Content Include="ProductListingAdmin.aspx" />
+    <Content Include="Review.aspx" />
     <Content Include="SalesReport.aspx" />
     <Content Include="Signup.aspx" />
     <Content Include="Styles\masterStyle.css" />
@@ -167,6 +168,13 @@
       <DependentUpon>ProductListingAdmin.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Review.aspx.cs">
+      <DependentUpon>Review.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Review.aspx.designer.cs">
+      <DependentUpon>Review.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SalesReport.aspx.cs">
       <DependentUpon>SalesReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -109,6 +109,7 @@
                         <asp:PlaceHolder ID="phCustomer" runat="server">
                             <li><a href="Cart.aspx">🛒 My Cart</a></li>
                             <li><a href="OrderHistory.aspx">📦 Order History</a></li>
+                            <li><a href="Review.aspx">Reviews</a></li>
                         </asp:PlaceHolder>
 
                         <!-- Admin Links -->
