@@ -115,6 +115,7 @@
                         <asp:PlaceHolder ID="phAdmin" runat="server">
                             <li><a href="ProductListingAdmin.aspx">🧑‍💼 Admin Panel</a></li>
                             <li><a href="DeliveryStatus.aspx">📦 Delivery Status</a></li>
+                            <li><a href="SalesReport.aspx">Sales Report</a></li>
                         </asp:PlaceHolder>
                     </ul>
                 </div>

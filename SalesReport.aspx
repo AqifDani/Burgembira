@@ -9,6 +9,29 @@
 
         <asp:Label ID="MessageLabel" runat="server" CssClass="status-message" />
 
+        <div style="text-align:center; margin-bottom:25px;">
+            <asp:DropDownList ID="ddlMonth" runat="server">
+                <asp:ListItem Text="All Months" Value="0"></asp:ListItem>
+                <asp:ListItem Text="January" Value="1"></asp:ListItem>
+                <asp:ListItem Text="February" Value="2"></asp:ListItem>
+                <asp:ListItem Text="March" Value="3"></asp:ListItem>
+                <asp:ListItem Text="April" Value="4"></asp:ListItem>
+                <asp:ListItem Text="May" Value="5"></asp:ListItem>
+                <asp:ListItem Text="June" Value="6"></asp:ListItem>
+                <asp:ListItem Text="July" Value="7"></asp:ListItem>
+                <asp:ListItem Text="August" Value="8"></asp:ListItem>
+                <asp:ListItem Text="September" Value="9"></asp:ListItem>
+                <asp:ListItem Text="October" Value="10"></asp:ListItem>
+                <asp:ListItem Text="November" Value="11"></asp:ListItem>
+                <asp:ListItem Text="December" Value="12"></asp:ListItem>
+            </asp:DropDownList>
+
+            <asp:DropDownList ID="ddlYear" runat="server"></asp:DropDownList>
+
+            <asp:Button ID="btnGenerate" runat="server" Text="Generate Report"
+                CssClass="grid-button" OnClick="btnGenerate_Click" />
+        </div>
+
         <div style="text-align:center; margin-bottom:20px;">
             <p><strong>Total Orders:</strong> <asp:Label ID="lblTotalOrders" runat="server" Text="0" /></p>
             <p><strong>Total Sales:</strong> RM <asp:Label ID="lblTotalSales" runat="server" Text="0.00" /></p>
