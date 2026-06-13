@@ -1,1 +1,0 @@
-﻿ALTER TABLE Cart ADD Customization NVARCHAR(255);
