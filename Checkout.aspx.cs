@@ -71,6 +71,8 @@ namespace Burgembira
                 return;
             }
 
+            string paymentMethod = rblPaymentMethod.SelectedValue;
+
             Session["CheckoutComplete"] = true;
 
             string connStr = ConfigurationManager.ConnectionStrings["BurgembiraDB"].ConnectionString;
@@ -79,6 +81,7 @@ namespace Burgembira
 
             receipt.Append("<div style='font-family:Poppins,sans-serif;'>");
             receipt.Append("<p><strong>Date:</strong> " + DateTime.Now.ToString("dd MMM yyyy hh:mm tt") + "</p>");
+            receipt.Append($"<p><strong>Payment Method:</strong> {paymentMethod}</p>");
             receipt.Append("<table style='width:100%; border-collapse:collapse;'>");
             receipt.Append("<tr><th style='text-align:left;'>Item</th><th style='text-align:center;'>Qty</th><th style='text-align:left;'>Notes</th><th style='text-align:right;'>Total (RM)</th></tr>");
 

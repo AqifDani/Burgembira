@@ -25,6 +25,19 @@
             <asp:Label ID="lblTotalAmount" runat="server" Text="0.00" />
         </div>
 
+        <div class="payment-method-box">
+            <h3>Select Payment Method</h3>
+
+            <asp:RadioButtonList
+                ID="rblPaymentMethod"
+                runat="server"
+                RepeatDirection="Vertical">
+                <asp:ListItem Text="Cash on Delivery" Value="Cash on Delivery" Selected="True"></asp:ListItem>
+                <asp:ListItem Text="Online Banking" Value="Online Banking"></asp:ListItem>
+                <asp:ListItem Text="E-Wallet" Value="E-Wallet"></asp:ListItem>
+            </asp:RadioButtonList>
+        </div>
+
         <asp:Button ID="btnConfirmCheckout" runat="server" Text="Confirm Checkout"
             CssClass="checkout-btn" OnClick="btnConfirmCheckout_Click" />
 

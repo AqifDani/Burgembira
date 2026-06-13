@@ -33,6 +33,15 @@ namespace Burgembira
         protected global::System.Web.UI.WebControls.Label lblTotalAmount;
 
         /// <summary>
+        /// rblPaymentMethod control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList rblPaymentMethod;
+
+        /// <summary>
         /// btnConfirmCheckout control.
         /// </summary>
         /// <remarks>
