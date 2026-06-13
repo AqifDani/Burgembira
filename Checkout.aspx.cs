@@ -98,10 +98,29 @@ namespace Burgembira
 
                 try
                 {
+                    using (SqlCommand stockCheckCmd = new SqlCommand(
+                        @"SELECT TOP 1 m.ItemName
+                          FROM Cart c
+                          INNER JOIN MenuItems m ON c.ItemId = m.ItemId
+                          WHERE c.UserId = @UserId
+                          AND m.StockQuantity < c.Quantity", conn, transaction))
+                    {
+                        stockCheckCmd.Parameters.AddWithValue("@UserId", userId);
+
+                        object insufficientItem = stockCheckCmd.ExecuteScalar();
+
+                        if (insufficientItem != null)
+                        {
+                            transaction.Rollback();
+                            ShowAlert("Not enough stock for " + insufficientItem.ToString());
+                            return;
+                        }
+                    }
+
                     using (SqlCommand orderCmd = new SqlCommand(
                         @"INSERT INTO Orders 
                           (UserId, OrderDate, OrderStatus, TotalAmount, PaymentMethod, DeliveryStatus)
-                          OUTPUT INSERTED.OrderId
+                          OUTPUT INSERTED.OrderID
                           VALUES 
                           (@UserId, @OrderDate, @OrderStatus, @TotalAmount, @PaymentMethod, @DeliveryStatus)", conn, transaction))
                     {
@@ -130,6 +149,17 @@ namespace Burgembira
                         detailCmd.Parameters.AddWithValue("@OrderId", orderId);
                         detailCmd.Parameters.AddWithValue("@UserId", userId);
                         detailCmd.ExecuteNonQuery();
+                    }
+
+                    using (SqlCommand stockCmd = new SqlCommand(
+                        @"UPDATE m
+                          SET m.StockQuantity = m.StockQuantity - c.Quantity
+                          FROM MenuItems m
+                          INNER JOIN Cart c ON m.ItemId = c.ItemId
+                          WHERE c.UserId = @UserId", conn, transaction))
+                    {
+                        stockCmd.Parameters.AddWithValue("@UserId", userId);
+                        stockCmd.ExecuteNonQuery();
                     }
 
                     using (SqlCommand clearCmd = new SqlCommand(

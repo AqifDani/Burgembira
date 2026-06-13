@@ -14,8 +14,8 @@
         <asp:SqlDataSource ID="SqlDataSource1" runat="server"
             ConnectionString="<%$ ConnectionStrings:BurgembiraDB %>"
             SelectCommand="SELECT * FROM [MenuItems]"
-            InsertCommand="INSERT INTO [MenuItems] ([ItemName], [CategoryId], [ItemPrice], [ItemImage]) VALUES (@ItemName, @CategoryId, @ItemPrice, @ItemImage)"
-            UpdateCommand="UPDATE [MenuItems] SET [ItemName] = @ItemName, [CategoryId] = @CategoryId, [ItemPrice] = @ItemPrice, [ItemImage] = @ItemImage WHERE [ItemId] = @ItemId"
+            InsertCommand="INSERT INTO [MenuItems] ([ItemName], [CategoryId], [ItemPrice], [ItemImage], [StockQuantity]) VALUES (@ItemName, @CategoryId, @ItemPrice, @ItemImage, @StockQuantity)"
+            UpdateCommand="UPDATE [MenuItems] SET [ItemName] = @ItemName, [CategoryId] = @CategoryId, [ItemPrice] = @ItemPrice, [ItemImage] = @ItemImage, [StockQuantity] = @StockQuantity WHERE [ItemId] = @ItemId"
             DeleteCommand="DELETE FROM [MenuItems] WHERE [ItemId] = @ItemId">
 
             <InsertParameters>
@@ -23,6 +23,7 @@
                 <asp:Parameter Name="CategoryId" Type="Int32" />
                 <asp:Parameter Name="ItemPrice" Type="Decimal" />
                 <asp:Parameter Name="ItemImage" Type="String" />
+                <asp:Parameter Name="StockQuantity" Type="Int32" />
             </InsertParameters>
 
             <UpdateParameters>
@@ -30,6 +31,7 @@
                 <asp:Parameter Name="CategoryId" Type="Int32" />
                 <asp:Parameter Name="ItemPrice" Type="Decimal" />
                 <asp:Parameter Name="ItemImage" Type="String" />
+                <asp:Parameter Name="StockQuantity" Type="Int32" />
                 <asp:Parameter Name="ItemId" Type="Int32" />
             </UpdateParameters>
 
@@ -52,6 +54,7 @@
                 <asp:BoundField DataField="CategoryId" HeaderText="Category ID" />
                 <asp:BoundField DataField="ItemPrice" HeaderText="Price (RM)" />
                 <asp:BoundField DataField="ItemImage" HeaderText="Image File Name / Image URL" />
+                <asp:BoundField DataField="StockQuantity" HeaderText="Stock Quantity" />
                 <asp:CommandField ShowInsertButton="True" InsertText="Add Item" />
             </Fields>
         </asp:DetailsView>
@@ -70,12 +73,10 @@
 
             <Columns>
                 <asp:BoundField DataField="ItemId" HeaderText="ID" InsertVisible="False" ReadOnly="True" SortExpression="ItemId" />
-
                 <asp:BoundField DataField="ItemName" HeaderText="Item Name" SortExpression="ItemName" />
-
                 <asp:BoundField DataField="CategoryId" HeaderText="Category ID" SortExpression="CategoryId" />
-
                 <asp:BoundField DataField="ItemPrice" HeaderText="Price (RM)" SortExpression="ItemPrice" DataFormatString="{0:N2}" />
+                <asp:BoundField DataField="StockQuantity" HeaderText="Stock" SortExpression="StockQuantity" />
 
                 <asp:TemplateField HeaderText="Image">
                     <ItemTemplate>
