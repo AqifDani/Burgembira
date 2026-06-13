@@ -44,7 +44,7 @@ namespace Burgembira
                             FOR XML PATH(''), TYPE
                         ).value('.', 'NVARCHAR(MAX)'), 1, 2, '') AS Items
                     FROM Orders o
-                    WHERE o.UserId = @UserId    
+                    WHERE o.UserId = @UserId
                     ORDER BY o.OrderDate DESC";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -86,7 +86,6 @@ namespace Burgembira
             {
                 int orderId = Convert.ToInt32(e.CommandArgument);
                 int userId = Convert.ToInt32(Session["UserId"]);
-
                 string connStr = ConfigurationManager.ConnectionStrings["BurgembiraDB"].ConnectionString;
 
                 using (SqlConnection conn = new SqlConnection(connStr))

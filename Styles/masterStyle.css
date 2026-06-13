@@ -1600,3 +1600,24 @@ strong {
         grid-template-columns: 1fr;
     }
 }
+
+/* =========================
+   ORDER HISTORY FINAL REFINEMENT
+   ========================= */
+
+#MainContent_GridViewOrderHistory td:nth-child(3) {
+    white-space: normal;
+    min-width: 220px;
+    text-align: left;
+}
+
+#MainContent_GridViewOrderHistory td:nth-child(5) {
+    font-weight: 800;
+    color: #d62828;
+}
+
+#MainContent_GridViewOrderHistory .remove-btn:disabled {
+    background: #b9b9b9 !important;
+    cursor: not-allowed !important;
+    box-shadow: none !important;
+}
