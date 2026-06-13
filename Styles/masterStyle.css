@@ -1,20 +1,43 @@
-﻿/* ========================= */
-/*       GLOBAL THEME        */
-/* ========================= */
+﻿/* =========================================================
+   BURGEMBIRA GLOBAL UI REFINEMENT
+   File: Styles/masterStyle.css
+   Purpose: Global layout, navbar, forms, cards, tables,
+            admin pages, checkout, reports, reviews, cart.
+   ========================================================= */
+
+/* =========================
+   1. THEME VARIABLES
+   ========================= */
 
 :root {
     --primary-red: #d62828;
-    --dark-red: #9d1c1c;
+    --primary-red-dark: #9d1c1c;
+    --primary-orange: #f77f00;
     --burger-yellow: #fcbf49;
     --cream-bg: #fff8ed;
-    --cream-bg-2: #fff3e3;
-    --card-bg: #ffffff;
+    --cream-bg-soft: #fff3e3;
+    --white: #ffffff;
     --text-dark: #252525;
-    --text-muted: #666666;
-    --border-soft: #f1d2c2;
-    --shadow-soft: 0 10px 25px rgba(0, 0, 0, 0.08);
-    --shadow-hover: 0 16px 35px rgba(0, 0, 0, 0.14);
+    --text-muted: #6b6b6b;
+    --text-light: #ffffff;
+    --border-soft: #f0d7c5;
+    --border-light: #eeeeee;
+    --success: #27ae60;
+    --success-dark: #1f8a4d;
+    --danger: #d62828;
+    --warning: #f77f00;
+    --shadow-soft: 0 10px 28px rgba(0, 0, 0, 0.08);
+    --shadow-hover: 0 16px 36px rgba(0, 0, 0, 0.14);
+    --radius-sm: 10px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --radius-pill: 999px;
+    --page-width: 1180px;
 }
+
+/* =========================
+   2. GLOBAL RESET
+   ========================= */
 
 * {
     box-sizing: border-box;
@@ -28,28 +51,45 @@ body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    background: linear-gradient(180deg, var(--cream-bg) 0%, var(--cream-bg-2) 100%);
+    background: linear-gradient(180deg, var(--cream-bg) 0%, var(--cream-bg-soft) 100%);
     color: var(--text-dark);
+    font-family: 'Poppins', Arial, sans-serif;
+    line-height: 1.5;
+}
+
+a {
+    color: inherit;
+}
+
+img {
+    max-width: 100%;
+}
+
+input,
+select,
+textarea,
+button {
     font-family: 'Poppins', Arial, sans-serif;
 }
 
-/* ========================= */
-/*        NAVIGATION         */
-/* ========================= */
+/* =========================
+   3. NAVIGATION BAR
+   ========================= */
 
 .navbar {
-    background: rgba(255, 248, 237, 0.96);
+    width: 100%;
+    background: rgba(255, 248, 237, 0.97);
     color: var(--text-dark);
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 24px;
-    padding: 16px 48px;
+    padding: 14px 42px;
     position: sticky;
     top: 0;
     z-index: 1000;
-    border-bottom: 1px solid rgba(214, 40, 40, 0.12);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+    border-bottom: 1px solid rgba(214, 40, 40, 0.14);
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.06);
 }
 
 .navbar-left,
@@ -59,11 +99,11 @@ body {
 }
 
 .navbar-left {
-    gap: 36px;
+    gap: 34px;
 }
 
 .navbar-right {
-    gap: 18px;
+    gap: 16px;
 }
 
 .logo {
@@ -76,16 +116,17 @@ body {
         font-family: 'Chewy', cursive, Arial, sans-serif;
         text-decoration: none;
         color: var(--primary-red);
-        font-size: 36px;
-        font-weight: 800;
+        font-size: 34px;
+        font-weight: 900;
         letter-spacing: 1px;
         text-shadow: 1px 1px 0 var(--burger-yellow);
+        line-height: 1;
     }
 
 .slogan {
     color: var(--text-muted);
-    font-size: 13px;
-    margin-top: 2px;
+    font-size: 12px;
+    margin-top: 4px;
     font-weight: 600;
 }
 
@@ -93,7 +134,7 @@ body {
     list-style: none;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
     flex-wrap: wrap;
     padding: 0;
     margin: 0;
@@ -108,11 +149,11 @@ body {
         .logout-btn {
             text-decoration: none;
             color: var(--text-dark);
-            font-size: 16px;
-            font-weight: 600;
+            font-size: 15px;
+            font-weight: 700;
             padding: 10px 14px;
-            min-height: 42px;
-            border-radius: 999px;
+            min-height: 40px;
+            border-radius: var(--radius-pill);
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -121,40 +162,39 @@ body {
             border: none;
             background: transparent;
             cursor: pointer;
-            transition: background 0.25s ease, color 0.25s ease, transform 0.2s ease;
+            transition: 0.22s ease;
         }
 
             .nav-links li a:hover,
             .logout-btn:hover {
                 background: var(--primary-red);
-                color: white;
+                color: var(--text-light);
                 transform: translateY(-1px);
             }
 
 .welcome-label {
     color: var(--primary-red);
-    font-size: 16px;
-    font-weight: 700;
+    font-size: 15px;
+    font-weight: 800;
     white-space: nowrap;
     display: inline-flex;
     align-items: center;
 }
 
-/* ========================= */
-/*          FOOTER           */
-/* ========================= */
+/* =========================
+   4. FOOTER
+   ========================= */
 
 .footer {
-    background: #1f1f1f;
-    color: white;
+    background: #202020;
+    color: var(--text-light);
     text-align: center;
     padding: 28px 20px;
-    font-family: 'Poppins', Arial, sans-serif;
-    font-size: 15px;
+    font-size: 14px;
     position: relative;
     margin-top: 70px;
-    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
-    letter-spacing: 0.3px;
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
+    letter-spacing: 0.2px;
 }
 
     .footer::before {
@@ -167,36 +207,52 @@ body {
         width: 90px;
         height: 5px;
         background-color: var(--burger-yellow);
-        border-radius: 999px;
+        border-radius: var(--radius-pill);
     }
 
-/* ========================= */
-/*       GENERAL LAYOUT      */
-/* ========================= */
+/* =========================
+   5. GENERAL PAGE LAYOUT
+   ========================= */
 
-.section-title {
+.page-wrapper,
+.content-wrapper {
+    width: min(var(--page-width), calc(100% - 32px));
+    margin: 35px auto;
+}
+
+.section-title,
+.page-title {
     text-align: center;
     font-family: 'Chewy', cursive, Arial, sans-serif;
     font-size: 38px;
     color: var(--primary-red);
-    margin: 45px auto 25px;
+    margin: 42px auto 24px;
     padding: 0 20px;
-    position: relative;
 }
 
-    .section-title::after {
+    .section-title::after,
+    .page-title::after {
         content: "";
         display: block;
         width: 90px;
         height: 5px;
         margin: 12px auto 0;
         background: var(--burger-yellow);
-        border-radius: 999px;
+        border-radius: var(--radius-pill);
     }
 
-/* ========================= */
-/*        HERO SECTION       */
-/* ========================= */
+.card,
+.panel-box {
+    background: var(--white);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+    padding: 28px;
+}
+
+/* =========================
+   6. HOMEPAGE
+   ========================= */
 
 .hero-banner {
     background-image: url('../images/banner1.png');
@@ -211,7 +267,7 @@ body {
     justify-content: center;
     align-items: center;
     background-color: #1c1c1c;
-    color: white;
+    color: var(--text-light);
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -221,7 +277,7 @@ body {
         content: "";
         position: absolute;
         inset: 0;
-        background: linear-gradient( 90deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.25) );
+        background: linear-gradient(90deg, rgba(0, 0, 0, 0.58), rgba(0, 0, 0, 0.24));
     }
 
 .hero-title,
@@ -234,7 +290,7 @@ body {
     font-family: 'Chewy', cursive, Arial, sans-serif;
     font-size: 56px;
     font-weight: 900;
-    color: white;
+    color: var(--text-light);
     margin: 0 20px 12px;
     text-shadow: 3px 3px 0 var(--primary-red);
 }
@@ -244,10 +300,6 @@ body {
     color: #ffe8b3;
     margin: 0 20px;
 }
-
-/* ========================= */
-/*      HOMEPAGE BURGERS     */
-/* ========================= */
 
 .burger-container {
     display: flex;
@@ -272,11 +324,11 @@ body {
     width: 100%;
     max-width: 360px;
     min-height: 430px;
-    background: var(--card-bg);
-    border-radius: 24px;
+    background: var(--white);
+    border-radius: var(--radius-lg);
     overflow: hidden;
     box-shadow: var(--shadow-soft);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    transition: 0.25s ease;
     position: relative;
     cursor: pointer;
     display: flex;
@@ -302,21 +354,17 @@ body {
     left: 0;
     right: 0;
     padding: 16px;
-    background: linear-gradient(90deg, var(--primary-red), var(--dark-red));
-    color: white;
+    background: linear-gradient(90deg, var(--primary-red), var(--primary-red-dark));
+    color: var(--text-light);
     font-size: 21px;
-    font-weight: 700;
+    font-weight: 800;
     text-align: center;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.4px;
     font-family: 'Chewy', cursive, Arial, sans-serif;
 }
 
-/* ========================= */
-/*     MISSION / VISION      */
-/* ========================= */
-
 .mission-section {
-    background: white;
+    background: var(--white);
     border: 1px solid var(--border-soft);
     border-radius: 28px;
     box-shadow: var(--shadow-soft);
@@ -331,7 +379,6 @@ body {
         font-size: 36px;
         color: var(--primary-red);
         margin-bottom: 20px;
-        text-shadow: none;
     }
 
     .mission-section p {
@@ -341,10 +388,6 @@ body {
         max-width: 800px;
         margin: 0 auto;
     }
-
-/* ========================= */
-/*       TESTIMONIALS        */
-/* ========================= */
 
 .testimonial-section {
     display: flex;
@@ -360,7 +403,7 @@ body {
 .testimonial-box {
     width: 300px;
     min-height: 150px;
-    background: white;
+    background: var(--white);
     border: 1px solid var(--border-soft);
     border-radius: 22px;
     padding: 24px 28px;
@@ -374,45 +417,28 @@ body {
     align-items: center;
 }
 
-    .testimonial-box::before {
-        content: "❝";
-        font-size: 32px;
-        position: absolute;
-        top: -18px;
-        left: 22px;
-        color: var(--primary-red);
-    }
-
-    .testimonial-box::after {
-        content: "❞";
-        font-size: 32px;
-        position: absolute;
-        bottom: -24px;
-        right: 22px;
-        color: var(--primary-red);
-    }
-
-/* ========================= */
-/*    PRODUCT LISTING PAGE   */
-/* ========================= */
+/* =========================
+   7. PRODUCT LISTING
+   ========================= */
 
 .top-bar-row {
-    max-width: 1100px;
-    margin: 35px auto 25px;
-    padding: 20px 24px;
-    background: white;
+    width: min(1100px, calc(100% - 32px));
+    margin: 35px auto 20px;
+    padding: 18px 22px;
+    background: var(--white);
     border-radius: 22px;
     box-shadow: var(--shadow-soft);
+    border: 1px solid var(--border-soft);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 20px;
+    gap: 18px;
     flex-wrap: wrap;
 }
 
 .category-label {
     font-family: 'Chewy', cursive, Arial, sans-serif;
-    font-size: 24px;
+    font-size: 25px;
     color: var(--primary-red);
 }
 
@@ -422,13 +448,12 @@ body {
     max-width: 650px;
     margin: 0;
     padding: 13px 20px;
-    font-size: 16px;
+    font-size: 15px;
     border: 1px solid var(--border-soft);
-    border-radius: 999px;
+    border-radius: var(--radius-pill);
     background: #fffaf4;
     outline: none;
-    font-family: 'Poppins', Arial, sans-serif;
-    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    transition: 0.22s ease;
 }
 
     .search-bar:focus {
@@ -438,48 +463,47 @@ body {
 
 .category-dropdown {
     display: block;
-    margin: 0 auto 35px;
+    margin: 0 auto 28px;
     background: var(--primary-red);
-    color: white;
-    font-weight: 700;
-    font-size: 17px;
-    padding: 12px 25px;
+    color: var(--text-light);
+    font-weight: 800;
+    font-size: 15px;
+    padding: 12px 24px;
     border: none;
-    border-radius: 999px;
-    font-family: 'Poppins', Arial, sans-serif;
+    border-radius: var(--radius-pill);
     text-transform: uppercase;
     box-shadow: 0 8px 18px rgba(214, 40, 40, 0.22);
     outline: none;
 }
 
 .product-list-wrapper {
-    max-width: 1150px;
+    width: min(1180px, calc(100% - 32px));
     margin: 0 auto;
-    padding: 20px 24px 70px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: stretch;
-    gap: 28px;
+    padding: 18px 0 70px;
 }
 
+    .product-list-wrapper table {
+        margin: 0 auto;
+    }
+
 .product-card {
-    width: 250px;
-    min-height: 370px;
-    background: white;
+    width: 255px;
+    min-height: 410px;
+    background: var(--white);
     border-radius: 24px;
-    padding: 22px;
+    padding: 20px;
+    margin: 8px;
     text-align: center;
     box-shadow: var(--shadow-soft);
     border: 1px solid rgba(214, 40, 40, 0.08);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    transition: 0.25s ease;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
     .product-card:hover {
-        transform: translateY(-8px);
+        transform: translateY(-7px);
         box-shadow: var(--shadow-hover);
     }
 
@@ -487,16 +511,16 @@ body {
     width: 100%;
     height: 170px;
     object-fit: contain;
-    border-radius: 20px;
+    border-radius: 18px;
     background: #fff6ec;
-    padding: 8px;
-    margin-bottom: 12px;
+    padding: 10px;
+    margin-bottom: 14px;
 }
 
 .product-name {
-    min-height: 44px;
-    font-size: 20px;
-    font-weight: 700;
+    min-height: 48px;
+    font-size: 19px;
+    font-weight: 800;
     color: var(--text-dark);
     margin-bottom: 8px;
     display: flex;
@@ -509,116 +533,167 @@ body {
     min-height: 24px;
     font-size: 17px;
     color: var(--primary-red);
-    font-weight: 700;
-    margin-bottom: 14px;
+    font-weight: 800;
+    margin-bottom: 8px;
     text-align: center;
 }
 
-/* ========================= */
-/*          BUTTONS          */
-/* ========================= */
+.product-stock {
+    min-height: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-muted);
+    background: #fff3e3;
+    padding: 6px 12px;
+    border-radius: var(--radius-pill);
+    margin-bottom: 14px;
+}
+
+/* =========================
+   8. BUTTONS
+   ========================= */
 
 .add-to-cart-btn,
 .checkout-btn,
 .remove-btn,
 .register-button,
-.grid-button {
+.grid-button,
+input[type="submit"],
+button {
     border: none;
-    border-radius: 999px;
-    font-weight: 700;
+    border-radius: var(--radius-pill);
+    font-weight: 800;
     cursor: pointer;
-    font-family: 'Poppins', Arial, sans-serif;
-    transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+    transition: 0.22s ease;
 }
 
 .add-to-cart-btn,
 .remove-btn,
-.register-button {
+.register-button,
+.checkout-btn {
     background: var(--primary-red);
-    color: white;
-    padding: 10px 22px;
+    color: var(--text-light);
+    padding: 11px 24px;
     box-shadow: 0 8px 16px rgba(214, 40, 40, 0.22);
 }
 
 .add-to-cart-btn {
     margin-top: auto;
+    width: 100%;
 }
 
 .checkout-btn {
-    background: var(--primary-red);
-    color: white;
-    padding: 12px 30px;
-    font-size: 18px;
-    display: block;
-    margin: 30px auto 0;
-    box-shadow: 0 8px 16px rgba(214, 40, 40, 0.22);
+    font-size: 17px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
     .add-to-cart-btn:hover,
     .checkout-btn:hover,
     .remove-btn:hover,
     .register-button:hover {
-        background: var(--dark-red);
+        background: var(--primary-red-dark);
         transform: translateY(-2px);
         box-shadow: 0 12px 22px rgba(214, 40, 40, 0.28);
     }
 
 .grid-button {
-    padding: 7px 15px;
-    background-color: #27ae60;
-    color: white;
+    padding: 9px 16px;
+    background-color: var(--success);
+    color: var(--text-light);
     font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 4px;
 }
 
     .grid-button:hover {
-        background-color: #1e874b;
+        background-color: var(--success-dark);
+        transform: translateY(-1px);
     }
 
-/* ========================= */
-/*           TOAST           */
-/* ========================= */
-
-.toast {
-    visibility: hidden;
-    min-width: 220px;
-    background-color: #252525;
-    color: #fff;
-    text-align: center;
-    padding: 13px 18px;
-    border-radius: 999px;
-    position: fixed;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 2000;
-    opacity: 0;
-    box-shadow: var(--shadow-soft);
-    transition: visibility 0s, opacity 0.3s ease-in-out;
+.disabled-btn,
+.add-to-cart-btn:disabled,
+input[type="submit"]:disabled {
+    background: #b9b9b9 !important;
+    color: #ffffff !important;
+    cursor: not-allowed !important;
+    box-shadow: none !important;
+    transform: none !important;
 }
 
-    .toast.show {
-        visibility: visible;
-        opacity: 1;
+/* =========================
+   9. FORM ELEMENTS
+   ========================= */
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+select,
+textarea,
+.aspNetDisabled {
+    max-width: 100%;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+select,
+textarea {
+    border: 1px solid var(--border-soft);
+    border-radius: 12px;
+    background: #fffaf4;
+    padding: 11px 14px;
+    font-size: 15px;
+    color: var(--text-dark);
+    outline: none;
+    transition: 0.22s ease;
+}
+
+textarea {
+    resize: vertical;
+}
+
+    input[type="text"]:focus,
+    input[type="password"]:focus,
+    input[type="email"]:focus,
+    input[type="number"]:focus,
+    select:focus,
+    textarea:focus {
+        border-color: var(--primary-red);
+        box-shadow: 0 0 0 4px rgba(214, 40, 40, 0.12);
     }
 
-/* ========================= */
-/*          CART PAGE        */
-/* ========================= */
+label,
+strong {
+    color: var(--text-dark);
+}
+
+/* =========================
+   10. CART PAGE
+   ========================= */
 
 .cart-empty {
     text-align: center;
-    font-size: 22px;
+    font-size: 21px;
     color: var(--text-muted);
-    font-family: 'Poppins', Arial, sans-serif;
     text-transform: uppercase;
     margin-top: 40px;
     padding: 20px;
+    font-weight: 800;
 }
 
 .cart-wrapper {
-    max-width: 1100px;
+    width: min(1100px, calc(100% - 32px));
     margin: 30px auto 0;
-    padding: 0 24px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -629,14 +704,13 @@ body {
 .cart-item {
     width: 300px;
     min-height: 390px;
-    background: white;
+    background: var(--white);
     border: 1px solid var(--border-soft);
-    border-radius: 24px;
+    border-radius: var(--radius-lg);
     padding: 22px;
     text-align: center;
-    font-family: 'Poppins', Arial, sans-serif;
     box-shadow: var(--shadow-soft);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    transition: 0.25s ease;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -649,9 +723,13 @@ body {
 
     .cart-item img {
         width: 130px;
+        height: 120px;
+        object-fit: contain;
         border-radius: 14px;
         margin: 0 auto 12px;
         align-self: center;
+        background: #fff6ec;
+        padding: 8px;
     }
 
     .cart-item label {
@@ -663,14 +741,14 @@ body {
 .cart-total-panel {
     max-width: 650px;
     margin: 35px auto 0;
-    background: white;
+    background: var(--white);
     border-radius: 20px;
     box-shadow: var(--shadow-soft);
-    font-family: 'Poppins', Arial, sans-serif;
     font-size: 20px;
     text-align: center;
-    padding: 22px;
+    padding: 24px;
     color: var(--text-dark);
+    border: 1px solid var(--border-soft);
 }
 
 .checkout-panel {
@@ -679,27 +757,26 @@ body {
     margin: 20px auto 0;
 }
 
-/* ========================= */
-/*        CHECKOUT PAGE      */
-/* ========================= */
+/* =========================
+   11. CHECKOUT PAGE
+   ========================= */
 
 .checkout-wrapper {
-    max-width: 850px;
+    width: min(900px, calc(100% - 32px));
     margin: 40px auto;
     padding: 32px;
-    background: white;
+    background: var(--white);
     border: 1px solid var(--border-soft);
-    border-radius: 24px;
+    border-radius: var(--radius-lg);
     box-shadow: var(--shadow-soft);
-    font-family: 'Poppins', Arial, sans-serif;
 }
 
     .checkout-wrapper h2 {
         text-align: center;
         color: var(--primary-red);
         font-family: 'Chewy', cursive, Arial, sans-serif;
-        font-size: 34px;
-        margin-bottom: 24px;
+        font-size: 36px;
+        margin: 0 0 24px;
     }
 
 .checkout-item {
@@ -714,105 +791,137 @@ body {
     .checkout-item p {
         margin: 8px 0;
         color: var(--text-dark);
-        font-size: 16px;
+        font-size: 15px;
     }
 
 .checkout-total {
     text-align: right;
     font-size: 21px;
-    font-weight: 700;
+    font-weight: 800;
     color: var(--text-dark);
     margin-top: 22px;
     border-top: 2px solid var(--primary-red);
     padding-top: 16px;
 }
 
+.payment-method-box {
+    background: #fff3e3;
+    border: 1px solid var(--border-soft);
+    border-radius: 18px;
+    padding: 20px;
+    margin: 24px 0;
+}
+
+    .payment-method-box h3 {
+        margin: 0 0 12px;
+        color: var(--primary-red);
+    }
+
+    .payment-method-box table {
+        margin: 0;
+    }
+
 .receipt-panel {
-    max-width: 850px;
+    width: min(900px, calc(100% - 32px));
     margin: 30px auto 0;
     background: #fffaf4;
     border: 1px dashed var(--primary-red);
-    padding: 22px;
+    padding: 24px;
     border-radius: 18px;
-    font-family: 'Poppins', Arial, sans-serif;
     box-shadow: var(--shadow-soft);
     color: var(--text-dark);
+    overflow-x: auto;
 }
 
-/* ========================= */
-/*       DELIVERY PAGE       */
-/* ========================= */
+/* =========================
+   12. ADMIN / DELIVERY / REPORT / REVIEW PAGES
+   ========================= */
 
 .delivery-wrapper {
-    max-width: 850px;
+    width: min(1100px, calc(100% - 32px));
     margin: 40px auto;
-    background: white;
+    background: var(--white);
     padding: 32px;
-    border-radius: 24px;
+    border-radius: var(--radius-lg);
     border: 1px solid var(--border-soft);
     box-shadow: var(--shadow-soft);
-    font-family: 'Poppins', Arial, sans-serif;
 }
 
 .delivery-title {
     text-align: center;
     color: var(--primary-red);
-    font-family: 'Poppins', Arial, sans-serif;
-    font-size: 28px;
-    font-weight: 800;
-    margin-bottom: 20px;
+    font-family: 'Chewy', cursive, Arial, sans-serif;
+    font-size: 36px;
+    font-weight: 900;
+    margin: 0 0 24px;
 }
 
 .status-message {
+    display: block;
     color: var(--primary-red);
     text-align: center;
-    margin-top: 10px;
-    font-weight: 700;
+    margin: 10px 0 18px;
+    font-weight: 800;
 }
 
-/* ========================= */
-/*          ADMIN PAGE       */
-/* ========================= */
+.delivery-wrapper h3,
+.delivery-wrapper h2,
+.delivery-wrapper p {
+    color: var(--text-dark);
+}
+
+.delivery-wrapper > div,
+.delivery-wrapper form,
+.delivery-wrapper p {
+    text-align: inherit;
+}
+
+/* =========================
+   13. GRIDVIEW / ADMIN TABLES
+   ========================= */
 
 .gridview-style,
 .admin-grid {
     width: 100%;
     max-width: 1100px;
-    margin: 30px auto;
-    border-collapse: collapse;
+    margin: 24px auto;
+    border-collapse: separate;
+    border-spacing: 0;
     overflow: hidden;
     border-radius: 18px;
-    background: white;
+    background: var(--white);
     box-shadow: var(--shadow-soft);
-    font-family: 'Poppins', Arial, sans-serif;
-    font-size: 16px;
+    font-size: 15px;
+    border: 1px solid var(--border-soft);
 }
 
     .gridview-style th,
     .gridview-style td,
     .admin-grid th,
     .admin-grid td {
-        padding: 12px 15px;
+        padding: 13px 15px;
         text-align: center;
-        border: 1px solid #eeeeee;
+        border-bottom: 1px solid var(--border-light);
+        vertical-align: middle;
     }
 
     .gridview-style th,
     .admin-grid th {
-        background: var(--primary-red);
-        color: white;
-        font-weight: 700;
+        background: linear-gradient(90deg, var(--primary-red), var(--primary-red-dark));
+        color: var(--text-light);
+        font-weight: 800;
+        white-space: nowrap;
     }
 
     .gridview-style td,
     .admin-grid td {
-        background: white;
+        background: var(--white);
         color: var(--text-dark);
     }
 
     .gridview-style tr:nth-child(even) td,
     .admin-grid tr:nth-child(even) td {
-        background: #fff7e6;
+        background: #fff8ed;
     }
 
     .gridview-style tr:hover td,
@@ -820,11 +929,130 @@ body {
         background: #fff1dc;
     }
 
-/* ========================= */
-/*        RESPONSIVE         */
-/* ========================= */
+    .gridview-style input[type="text"],
+    .gridview-style select,
+    .admin-grid input[type="text"],
+    .admin-grid select {
+        width: 100%;
+        min-width: 90px;
+    }
 
-@media (max-width: 900px) {
+    .admin-grid img,
+    .gridview-style img {
+        border-radius: 12px;
+        background: #fff6ec;
+        object-fit: contain;
+    }
+
+    /* DetailsView add item alignment */
+    .admin-grid input[type="text"],
+    .admin-grid input[type="number"] {
+        width: 100%;
+    }
+
+    .admin-grid td:first-child {
+        font-weight: 700;
+    }
+
+/* =========================
+   14. REVIEW PAGE FORM BOX
+   ========================= */
+
+.delivery-wrapper div[style*="max-width: 600px"] {
+    background: #fffaf4 !important;
+    border: 1px solid var(--border-soft) !important;
+    border-radius: 22px !important;
+    box-shadow: var(--shadow-soft);
+}
+
+.delivery-wrapper textarea,
+.delivery-wrapper select {
+    width: 100%;
+}
+
+/* =========================
+   15. TOAST
+   ========================= */
+
+.toast {
+    visibility: hidden;
+    min-width: 220px;
+    background-color: #252525;
+    color: var(--text-light);
+    text-align: center;
+    padding: 13px 18px;
+    border-radius: var(--radius-pill);
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2000;
+    opacity: 0;
+    box-shadow: var(--shadow-soft);
+    transition: visibility 0s, opacity 0.3s ease-in-out;
+    font-weight: 700;
+}
+
+    .toast.show {
+        visibility: visible;
+        opacity: 1;
+    }
+
+/* =========================
+   16. LOGIN / SIGNUP BASIC SUPPORT
+   ========================= */
+
+.auth-container,
+.login-container,
+.signup-container {
+    width: min(520px, calc(100% - 32px));
+    margin: 45px auto;
+    background: var(--white);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+    padding: 32px;
+}
+
+    .auth-container h2,
+    .login-container h2,
+    .signup-container h2 {
+        text-align: center;
+        color: var(--primary-red);
+        font-family: 'Chewy', cursive, Arial, sans-serif;
+        font-size: 34px;
+        margin-top: 0;
+    }
+
+    .auth-container table,
+    .login-container table,
+    .signup-container table {
+        width: 100%;
+    }
+
+    .auth-container td,
+    .login-container td,
+    .signup-container td {
+        padding: 8px;
+        vertical-align: middle;
+    }
+
+    .auth-container input[type="text"],
+    .auth-container input[type="password"],
+    .auth-container input[type="email"],
+    .login-container input[type="text"],
+    .login-container input[type="password"],
+    .signup-container input[type="text"],
+    .signup-container input[type="password"],
+    .signup-container input[type="email"] {
+        width: 100%;
+    }
+
+/* =========================
+   17. RESPONSIVE
+   ========================= */
+
+@media (max-width: 1000px) {
     .navbar {
         flex-direction: column;
         align-items: center;
@@ -837,13 +1065,19 @@ body {
     .nav-links {
         flex-direction: column;
         align-items: center;
-        gap: 12px;
+        gap: 10px;
     }
 
     .logo {
         align-items: center;
     }
 
+    .welcome-label {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 900px) {
     .hero-banner {
         min-height: 330px;
         aspect-ratio: auto;
@@ -860,7 +1094,6 @@ body {
     .top-bar-row {
         flex-direction: column;
         align-items: stretch;
-        margin: 25px 16px;
     }
 
     .search-bar {
@@ -880,8 +1113,6 @@ body {
     .checkout-wrapper,
     .delivery-wrapper,
     .receipt-panel {
-        margin-left: 16px;
-        margin-right: 16px;
         padding: 24px;
     }
 
@@ -892,15 +1123,24 @@ body {
         white-space: nowrap;
         border-radius: 12px;
     }
+
+        .gridview-style th,
+        .gridview-style td,
+        .admin-grid th,
+        .admin-grid td {
+            padding: 11px 12px;
+        }
 }
 
 @media (max-width: 600px) {
-    .section-title {
-        font-size: 32px;
+    .section-title,
+    .page-title,
+    .delivery-title {
+        font-size: 31px;
     }
 
     .logo a {
-        font-size: 32px;
+        font-size: 31px;
     }
 
     .burger-container,
@@ -923,4 +1163,12 @@ body {
         .mission-section p {
             font-size: 16px;
         }
+
+    .product-card {
+        min-height: 390px;
+    }
+
+    .checkout-total {
+        text-align: center;
+    }
 }
